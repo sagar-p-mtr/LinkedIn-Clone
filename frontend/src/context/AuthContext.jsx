@@ -58,7 +58,20 @@ export const AuthProvider = ({ children }) => {
       setUser(user);
       return { success: true };
     } catch (error) {
-      const message = error.response?.data?.message || 'Signup failed';
+      console.error('Signup error details:', error);
+      let message = 'Signup failed';
+      
+      if (error.response) {
+        // Server responded with error
+        message = error.response?.data?.message || `Server error: ${error.response.status}`;
+      } else if (error.request) {
+        // Request made but no response
+        message = 'Cannot connect to server. Please check your internet connection or try again later.';
+      } else {
+        // Something else happened
+        message = error.message || 'Signup failed';
+      }
+      
       setError(message);
       return { success: false, message };
     }
