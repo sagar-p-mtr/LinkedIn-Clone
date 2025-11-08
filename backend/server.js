@@ -6,6 +6,9 @@ const dotenv = require('dotenv');
 // Load environment variables
 dotenv.config();
 
+// Disable mongoose buffering for serverless
+mongoose.set('bufferCommands', false);
+
 // Import routes
 const authRoutes = require('./routes/auth');
 const postRoutes = require('./routes/posts');
