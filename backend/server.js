@@ -6,9 +6,6 @@ const dotenv = require('dotenv');
 // Load environment variables
 dotenv.config();
 
-// Disable mongoose buffering for serverless
-mongoose.set('bufferCommands', false);
-
 // Import routes
 const authRoutes = require('./routes/auth');
 const postRoutes = require('./routes/posts');
@@ -56,41 +53,26 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Connect to MongoDB (only if not already connected)
-let isConnected = false;
-
+// Connect to MongoDB
 const connectDB = async () => {
-  if (isConnected) {
-    console.log('Using existing database connection');
+  if (mongoose.connection.readyState >= 1) {
     return;
   }
 
   try {
-    const conn = await mongoose.connect(process.env.MONGODB_URI, {
+    await mongoose.connect(process.env.MONGODB_URI, {
       serverSelectionTimeoutMS: 5000,
       socketTimeoutMS: 45000,
     });
-    isConnected = true;
-    console.log(`MongoDB Connected: ${conn.connection.host}`);
+    console.log(`MongoDB Connected`);
   } catch (error) {
     console.error(`Error connecting to MongoDB: ${error.message}`);
     throw error;
   }
 };
 
-// Middleware to ensure DB connection
-app.use(async (req, res, next) => {
-  try {
-    await connectDB();
-    next();
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: 'Database connection failed',
-      error: error.message
-    });
-  }
-});
+// Connect to database immediately
+connectDB();
 
 // Start server only if not in serverless environment
 if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
