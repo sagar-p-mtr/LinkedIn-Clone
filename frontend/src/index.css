@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --linkedin-blue: #0a66c2;
+  --linkedin-dark-blue: #004182;
+  --linkedin-light-blue: #378fe9;
+  --text-primary: #000000e6;
+  --text-secondary: #00000099;
+  --border-color: #00000014;
+  --hover-bg: #f3f2ef;
+  --card-bg: #ffffff;
+  --success-green: #057642;
+  --like-red: #df704d;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+  background-color: #f3f2ef;
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+input,
+textarea {
+  font-family: inherit;
+}
+
+/* LinkedIn-style scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* LinkedIn-style card */
+.linkedin-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.08), 0 0 0 rgba(0,0,0,0);
+  overflow: hidden;
+}
+
+/* LinkedIn-style button */
+.linkedin-btn {
+  padding: 8px 16px;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid var(--linkedin-blue);
+  transition: all 0.2s;
+}
+
+.linkedin-btn-primary {
+  background: var(--linkedin-blue);
+  color: white;
+  border: none;
+}
+
+.linkedin-btn-primary:hover {
+  background: var(--linkedin-dark-blue);
+}
+
+.linkedin-btn-secondary {
+  background: transparent;
+  color: var(--linkedin-blue);
+}
+
+.linkedin-btn-secondary:hover {
+  background: rgba(10, 102, 194, 0.1);
+  border-color: var(--linkedin-dark-blue);
+}
+

@@ -1,0 +1,66 @@
+.feed-container {
+  min-height: 100vh;
+  background-color: #f3f2ef;
+}
+
+.feed-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px 20px;
+  display: grid;
+  grid-template-columns: 225px 1fr 300px;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.feed-main {
+  max-width: 100%;
+}
+
+.feed-loading,
+.feed-error,
+.feed-empty {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: center;
+  margin-top: 20px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
+}
+
+.feed-error {
+  color: #c00;
+  background-color: #fee;
+  border: 1px solid #fcc;
+}
+
+.feed-empty p {
+  color: #666;
+  font-size: 16px;
+}
+
+.posts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+@media (max-width: 1200px) {
+  .feed-content {
+    grid-template-columns: 1fr 300px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .feed-content {
+    grid-template-columns: 1fr;
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 768px) {
+  .feed-content {
+    padding: 16px 12px;
+  }
+}
